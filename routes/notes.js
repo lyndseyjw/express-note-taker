@@ -1,5 +1,4 @@
 const notes = require('express').Router();
-// const savedNotes = require('./db/db.json');
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 const { v4: uuidv4 } = require('uuid');
 
@@ -40,7 +39,6 @@ notes.delete('/:id', (req, res) => {
                     return;
                 }
             }
-        //     res.json(data)});
         res.status(404).json('Review ID not found');
     });
     }
