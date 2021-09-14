@@ -12,8 +12,18 @@ This project is licensed under the terms of the MIT license. You may contact the
 
 Technology used : HTML5, Advanced CSS, Javascript, Express, Node, Heroku.
 
-To visit the deployed application, please click here : 
+To visit the deployed application, please click here : https://infinite-sea-58658.herokuapp.com/
 
 I hope you enjoy!
 
-![Generated HTML](./assets/images/generated-html.png)
+App Home Page : 
+![Opening Page](./assets/images/opening-page.png)
+
+Home Screen of Notes Section with Saved Note From Previous Entry :
+![Notes Page](./assets/images/notes-opening-page.png)
+
+Save Button Appears Once User Begins Entering New Note : 
+![Save Button](./assets/images/adding-new-note-with-save-button.png)
+
+New Note Added to the Left Column : 
+![New Note Saved](./assets/images/new-note-saved.png)

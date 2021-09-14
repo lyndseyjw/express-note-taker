@@ -36,7 +36,7 @@ notes.delete('/:id', (req, res) => {
                 const currentNote = data[i];
                 if (currentNote.id === noteId) {
                     res.status(200).json(`Note deleted`);
-                    return;
+                    return noteId;
                 }
             }
         res.status(404).json('Review ID not found');
