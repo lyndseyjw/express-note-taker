@@ -11,15 +11,17 @@ notes.post('/', (req, res) => {
 
   const { title, text } = req.body;
 
-  if (req.body) {
+  if (title && text ) {
     const newNote = {
       title,
       text,
       id: uuidv4(),
     };
 
-    readAndAppend(newNote, './db/db.json');
-    console.log(newNote)
+    const noteString = JSON.stringify(newNote);
+
+    readAndAppend(noteString, './db/db.json');
+    console.log(noteString)
     res.json(`Note added successfully`);
   } else {
     res.error('Error in adding note');
@@ -36,7 +38,7 @@ notes.delete('/:id', (req, res) => {
           const currentNote = json[i];
           if (currentNote.id === noteId) {
               res.status(200).json(`Note deleted`);
-              return noteId;
+              return;
           }
       }
   res.status(404).json('Review ID not found');
