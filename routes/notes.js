@@ -1,5 +1,5 @@
 const notes = require('express').Router();
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, writeToFile } = require('../helpers/fsUtils');
 const { v4: uuidv4 } = require('uuid');
 
 notes.get('/', (req, res) => {
@@ -32,14 +32,16 @@ notes.delete('/:id', (req, res) => {
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-      for (let i = 0; i < json.length; i++) {
-          const currentNote = json[i];
-          if (currentNote.id === noteId) {
-              res.status(200).json(`Note deleted`);
-              return;
-          }
-      }
-  res.status(404).json('Review ID not found');
+      const newNoteArray = json.filter(note => note.id !== noteId)
+      writeToFile('./db/db.json', newNoteArray)
+      res.status(200).json(`Note deleted`);
+      return;
+      // for (let i = 0; i < json.length; i++) {
+      //     const currentNote = json[i];
+      //     if (currentNote.id !== noteId) {    
+      //     }
+      // }
+  // res.status(404).json('Review ID not found');
 });
 });
 
