@@ -29,10 +29,11 @@ notes.post('/', (req, res) => {
 notes.delete('/:id', (req, res) => {
   console.info(`${req.method} request received to delete a note`);
   const noteId = req.params.id;
-  readFromFile('./db/db.json').then((data) => {
-      data = JSON.parse(data);
-      for (let i = 0; i < data.length; i++) {
-          const currentNote = data[i];
+  readFromFile('./db/db.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+      for (let i = 0; i < json.length; i++) {
+          const currentNote = json[i];
           if (currentNote.id === noteId) {
               res.status(200).json(`Note deleted`);
               return noteId;
