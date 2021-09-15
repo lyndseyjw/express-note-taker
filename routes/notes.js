@@ -27,21 +27,19 @@ notes.post('/', (req, res) => {
 });
 
 notes.delete('/:id', (req, res) => {
-    if (req.body && req.params.id) {
-        console.info(`${req.method} request received to delete a note`);
-        const noteId = req.params.id;
-        readFromFile('./db/db.json').then((data) => {
-            data = JSON.parse(data);
-            for (let i = 0; i < data.length; i++) {
-                const currentNote = data[i];
-                if (currentNote.id === noteId) {
-                    res.status(200).json(`Note deleted`);
-                    return noteId;
-                }
-            }
-        res.status(404).json('Review ID not found');
-    });
-    }
-  });
+  console.info(`${req.method} request received to delete a note`);
+  const noteId = req.params.id;
+  readFromFile('./db/db.json').then((data) => {
+      data = JSON.parse(data);
+      for (let i = 0; i < data.length; i++) {
+          const currentNote = data[i];
+          if (currentNote.id === noteId) {
+              res.status(200).json(`Note deleted`);
+              return noteId;
+          }
+      }
+  res.status(404).json('Review ID not found');
+});
+});
 
 module.exports = notes;
